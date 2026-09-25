@@ -12,55 +12,66 @@ public class Personagen {
     private EstiloEspada estiloEspadaPrincipal;
     private RankPoder rankEspadachin;
 
-    public Personagen(String nome, int vidaMaxima, int vidaAtual, int manaMaxima, int manaAtual, int staminaMax, int staminaAtual, RankPoder rankMagicoglobal, EstiloEspada estiloEspadaPrincipal, RankPoder rankEspadachin) {
-        Nome = nome;
-        VidaMaxima = vidaMaxima;
-        VidaAtual = vidaAtual;
-        ManaMaxima = manaMaxima;
-        ManaAtual = manaAtual;
-        StaminaMax = staminaMax;
-        StaminaAtual = staminaAtual;
+    private Habilidade[] habilidades;
+    private int quantidadeHabilidades;
+
+    public Personagen(String nome, int vida, int mana, int stamina) {
+        this.Nome = nome;
+        this.VidaMaxima = vida;
+        this.VidaAtual = vida;
+        this.ManaMaxima = mana;
+        this.ManaAtual = mana;
+        this.StaminaMax = stamina;
+        this.StaminaAtual = stamina;
         this.rankMagicoglobal = RankPoder.INICIANTE;
-        this.estiloEspadaPrincipal = null;
         this.rankEspadachin = RankPoder.INICIANTE;
+        this.rankMagicoglobal = RankPoder.INICIANTE;
+
+        this.habilidades = new Habilidade[10];
+        this.quantidadeHabilidades = 0;
     }
-
-
-    public String getNome() {
-        return Nome;
-    }
-
-    public int getVidaAtual() {
-        return VidaAtual;
-    }
-
-    public void setVidaAtual(int vidaAtual) {
-        if (vidaAtual < 0) {
-            this.VidaAtual = vidaAtual;
+    public void aprenderHabilidade(Habilidade habilidade) {
+        if (quantidadeHabilidades < habilidades.length) {
+            this.habilidades[quantidadeHabilidades] = habilidade;
+            this.quantidadeHabilidades++;
+            IO.println(" " + Nome + " aprendeu: " + habilidade.getNomeAb() + "!");
         } else {
-            this.VidaAtual = vidaAtual;
+            IO.println(" " + Nome + " não pode aprender mais habilidades!");
         }
     }
 
-    public int getManaAtual() {
-        return ManaAtual;
+    public Habilidade[] getHabilidades() {
+        return habilidades;
+    }
+
+    public int getQuantidadeHabilidades() {
+        return quantidadeHabilidades;
+    }
+
+    public String getNome() { return Nome; }
+    public int getVidaAtual() { return VidaAtual; }
+    public int getManaAtual() { return ManaAtual; }
+    public int getStaminaAtual() { return StaminaAtual; }
+
+    public void setVidaAtual(int vidaAtual) {
+        if (vidaAtual < 0) {
+            this.VidaAtual = 0;
+        } else {
+            this.VidaAtual = vidaAtual;
+        }
     }
 
     public void setManaAtual(int manaAtual) {
         if (manaAtual < 0) {
-            this.ManaAtual = manaAtual;
+            this.ManaAtual = 0;
         } else {
             this.ManaAtual = manaAtual;
         }
     }
 
-    public int getStaminaAtual() {
-        return StaminaAtual;
-    }
-
     public void setStaminaAtual(int staminaAtual) {
         if (staminaAtual < 0) {
-            this.StaminaAtual = staminaAtual;
+            this.StaminaAtual = 0;
         } else {
             this.StaminaAtual = staminaAtual;
         }
@@ -69,24 +80,14 @@ public class Personagen {
     public RankPoder getRankMagicoglobal() {
         return rankMagicoglobal;
     }
-
-    public void setRankMagicoglobal(RankPoder rankMagicoglobal) {
-        this.rankMagicoglobal = rankMagicoglobal;
+    public void setRankMagicoglobal(RankPoder rank) {
+        this.rankMagicoglobal = rank;
     }
-
-    public EstiloEspada getEstiloEspadaPrincipal() {
-        return estiloEspadaPrincipal;
-    }
-
-    public void setEstiloEspadaPrincipal(EstiloEspada estiloEspadaPrincipal) {
-        this.estiloEspadaPrincipal = estiloEspadaPrincipal;
-    }
-
     public RankPoder getRankEspadachin() {
         return rankEspadachin;
     }
-
-    public void setRankEspadachin(RankPoder rankEspadachin) {
-        this.rankEspadachin = rankEspadachin;
+    public void setRankEspadachin(RankPoder rank){
+        this.rankEspadachin = rank;
     }
+
 }

@@ -22,6 +22,7 @@ public class TecnicaEspada extends Habilidade {
         }
     }
     public int getCustoStamina() {
+
         return custoStamina;
     }
 }

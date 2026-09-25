@@ -1,33 +1,83 @@
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 void main() {
+    Scanner scanner = new Scanner(System.in);
+
+
     IO.println("BEM-VINDO AO MUSHOKU TENSEI");
+    IO.println("Digite o nome do seu personagem: ");
+    String nomeJogador = scanner.nextLine();
+
+    IO.println("Escolha sua Classe:");
+    IO.println("1 Mago");
+    IO.println("2 Guerreiro");
+    IO.println("Sua opção: ");
+    int opcaoClasse = scanner.nextInt();
+
+    Personagen jogador;
+
+    if (opcaoClasse == 1) {
+
+        jogador = new Personagen(nomeJogador, 80, 120, 20);
+        jogador.aprenderHabilidade(new Magia("Bola de Fogo", RankPoder.INICIANTE, ElementosMagicos.Fogo, 25, 15));
+        jogador.aprenderHabilidade(new Magia("Jato de Água", RankPoder.INICIANTE, ElementosMagicos.Agua, 20, 10));
+    } else {
+
+        jogador = new Personagen(nomeJogador, 120, 20, 80);
+        jogador.aprenderHabilidade(new TecnicaEspada("Corte Relâmpago", RankPoder.INICIANTE, EstiloEspada.DEUS_DA_ESPADA, 15, 20));
+        jogador.aprenderHabilidade(new TecnicaEspada("Estocada Veloz", RankPoder.INICIANTE, EstiloEspada.DEUS_DA_AGUA, 10, 15));
+    }
+
+    Personagen guerreiro = new Personagen("Lucas", 90, 0, 40);
+    guerreiro.aprenderHabilidade(new TecnicaEspada("Golpe Pesado", RankPoder.INICIANTE, EstiloEspada.DEUS_DO_NORTE, 10, 15));
+    IO.println("BATALHA: " + jogador.getNome() + " vs " + guerreiro.getNome() + " ");
+
+    int Turno = 1;
+    while (jogador.getVidaAtual() > 0 && guerreiro.getVidaAtual() > 0) {
+        IO.println("TURNO " + Turno);
+        IO.println(jogador.getNome() + " | HP: " + jogador.getVidaAtual() + " | MP: " + jogador.getManaAtual() + " | SP: " + jogador.getStaminaAtual());
+        IO.println(guerreiro.getNome() + " | HP: " + guerreiro.getVidaAtual());
+
+        IO.println("Escolha qual habilidade usar:");
+        for (int i = 0; i < jogador.getQuantidadeHabilidades(); i++) {
+            Habilidade h = jogador.getHabilidades()[i];
+            IO.println("[" + (i + 1) + "] " + h.getNomeAb() + " (" + h.getRank() + ")");
+        }
+
+        IO.println("Sua opção: ");
+        int escolha = scanner.nextInt() - 1;
 
 
-    Personagen Murilo = new Personagen("Murilo", 100, 30, 200, 50, 90, 30, RankPoder.INICIANTE, null, RankPoder.INICIANTE);
-    Personagen Guerreiro = new Personagen("Lucas", 100, 40, 100, 0, 80, 40, RankPoder.INICIANTE, null, RankPoder.INICIANTE);
+        if (escolha >= 0 && escolha < jogador.getQuantidadeHabilidades()) {
+            jogador.getHabilidades()[escolha].fazer(jogador, guerreiro);
+        } else {
+            IO.println("Opção inválida! Você perdeu a vez.");
+        }
 
-    Habilidade bolaDeFogo = new Magia("Bola de Fogo", RankPoder.INICIANTE, ElementosMagicos.Fogo, 20, 35);
-    Habilidade corteRapido = new TecnicaEspada("Corte Relâmpago", RankPoder.INICIANTE, EstiloEspada.DEUS_DA_ESPADA, 15, 25);
 
-    IO.println("              Status             ");
-    IO.println("Nome: " + Murilo.getNome() + " | Rank Magico: " + Murilo.getRankMagicoglobal());
-    IO.println("Vida do Guerreiro: " + Guerreiro.getVidaAtual());
+        if (guerreiro.getVidaAtual() > 0) {
+            IO.println("Turno do Rival:");
+            guerreiro.getHabilidades()[0].fazer(guerreiro, jogador);
+        }
 
-    IO.println("        TURNO 1     ");
-    bolaDeFogo.fazer(Murilo, Guerreiro);
-    IO.println("Vida Restante do Guerreiro: " + Guerreiro.getVidaAtual());
+        Turno++;
+    }
 
-    IO.println("        TURNO 2     ");
-    corteRapido.fazer(Murilo, Guerreiro);
-    IO.println("Vida Restante do Guerreiro: " + Guerreiro.getVidaAtual());
+    IO.println("FIM DO COMBATE ");
+    if (jogador.getVidaAtual() > 0) {
+        IO.println("Parabéns! " + jogador.getNome() + " venceu a batalha!");
 
-    IO.println("     FIM DO COMBATE    ");
+        IO.println("Recompensa de vitória: ");
 
-    if (Guerreiro.getVidaAtual() <= 20) {
-        IO.println("Parabéns! " + Murilo.getNome() + " venceu a batalha!");
-        Murilo.setRankMagicoglobal(RankPoder.INTERMEDIARIO);
-        IO.println("Progresso: Murilo evoluiu para o Rank Mágico: " + Murilo.getRankMagicoglobal() + "!");
+        if (opcaoClasse == 1) {
+            jogador.setRankMagicoglobal(RankPoder.INTERMEDIARIO);
+            IO.println("Progresso: " + jogador.getNome() + " evoluiu para o Rank Mágico: " + jogador.getRankMagicoglobal() + "!");
+            jogador.aprenderHabilidade(new Magia("Explosão de Fogo", RankPoder.INTERMEDIARIO, ElementosMagicos.Fogo, 45, 30));
+        } else {
+            jogador.setRankEspadachin(RankPoder.INTERMEDIARIO);
+            IO.println("Progresso: " + jogador.getNome() + " evoluiu para o Rank Espadachim: " + jogador.getRankEspadachin() + "!");
+            jogador.aprenderHabilidade(new TecnicaEspada("Dança das Lâminas", RankPoder.INTERMEDIARIO, EstiloEspada.DEUS_DA_ESPADA, 25, 40));
+        }
     } else {
         IO.println("Derrota! O rival resistiu aos seus ataques.");
     }
