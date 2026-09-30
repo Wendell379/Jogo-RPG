@@ -18,17 +18,17 @@ void main() {
 
     if (opcaoClasse == 1) {
 
-        jogador = new Personagen(nomeJogador, 80, 120, 20);
+        jogador = new Personagen(nomeJogador, 60, 120, 30);
         jogador.aprenderHabilidade(new Magia("Bola de Fogo", RankPoder.INICIANTE, ElementosMagicos.Fogo, 25, 15));
         jogador.aprenderHabilidade(new Magia("Rajada de Água", RankPoder.INICIANTE, ElementosMagicos.Agua, 20, 10));
     } else {
 
-        jogador = new Personagen(nomeJogador, 120, 20, 80);
+        jogador = new Personagen(nomeJogador, 80, 0, 80);
         jogador.aprenderHabilidade(new TecnicaEspada("Corte Rapido", RankPoder.INICIANTE, EstiloEspada.DEUS_DA_ESPADA, 15, 20));
         jogador.aprenderHabilidade(new TecnicaEspada("Golpe Pesado", RankPoder.INICIANTE, EstiloEspada.DEUS_DA_AGUA, 10, 15));
     }
 
-    Personagen guerreiro = new Personagen("Lucas", 130, 0, 90);
+    Personagen guerreiro = new Personagen("Lucas", 90, 0, 80);
     guerreiro.aprenderHabilidade(new TecnicaEspada("Golpe Pesado", RankPoder.INICIANTE, EstiloEspada.DEUS_DO_NORTE, 10, 20));
     IO.println("BATALHA: " + jogador.getNome() + " vs " + guerreiro.getNome() + " ");
 
