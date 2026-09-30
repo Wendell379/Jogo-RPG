@@ -81,9 +81,11 @@ public class Personagen {
         return rankMagicoglobal;
     }
     public void setRankMagicoglobal(RankPoder rank) {
+
         this.rankMagicoglobal = rank;
     }
     public RankPoder getRankEspadachin() {
+
         return rankEspadachin;
     }
     public void setRankEspadachin(RankPoder rank){
