@@ -4,7 +4,7 @@ void main() {
     Scanner scanner = new Scanner(System.in);
 
 
-    IO.println("BEM-VINDO AO MUSHOKU TENSEI");
+    IO.println("BEM-VINDO A MUSHOKU TENSEI");
     IO.println("Digite o nome do seu personagem: ");
     String nomeJogador = scanner.nextLine();
 
@@ -28,8 +28,8 @@ void main() {
         jogador.aprenderHabilidade(new TecnicaEspada("Golpe Pesado", RankPoder.INICIANTE, EstiloEspada.DEUS_DA_AGUA, 10, 15));
     }
 
-    Personagen guerreiro = new Personagen("Lucas", 90, 0, 40);
-    guerreiro.aprenderHabilidade(new TecnicaEspada("Golpe Pesado", RankPoder.INICIANTE, EstiloEspada.DEUS_DO_NORTE, 10, 15));
+    Personagen guerreiro = new Personagen("Lucas", 130, 0, 90);
+    guerreiro.aprenderHabilidade(new TecnicaEspada("Golpe Pesado", RankPoder.INICIANTE, EstiloEspada.DEUS_DO_NORTE, 10, 20));
     IO.println("BATALHA: " + jogador.getNome() + " vs " + guerreiro.getNome() + " ");
 
     int Turno = 1;
