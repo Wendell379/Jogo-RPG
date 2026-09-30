@@ -7,14 +7,14 @@ public class Personagen {
     private int ManaAtual;
     private int StaminaMax;
     private int StaminaAtual;
+    private Habilidade habilidade1;
+    private Habilidade habilidade2;
+    private Habilidade habilidadeNova;
+
 
     private RankPoder rankMagicoglobal;
     private EstiloEspada estiloEspadaPrincipal;
     private RankPoder rankEspadachin;
-
-    private Habilidade[] habilidades;
-    private int quantidadeHabilidades;
-
     public Personagen(String nome, int vida, int mana, int stamina) {
         this.Nome = nome;
         this.VidaMaxima = vida;
@@ -25,27 +25,34 @@ public class Personagen {
         this.StaminaAtual = stamina;
         this.rankMagicoglobal = RankPoder.INICIANTE;
         this.rankEspadachin = RankPoder.INICIANTE;
-        this.rankMagicoglobal = RankPoder.INICIANTE;
 
-        this.habilidades = new Habilidade[10];
-        this.quantidadeHabilidades = 0;
+        this.habilidade1 = null;
+        this.habilidade2 = null;
+        this.habilidadeNova = null;
     }
     public void aprenderHabilidade(Habilidade habilidade) {
-        if (quantidadeHabilidades < habilidades.length) {
-            this.habilidades[quantidadeHabilidades] = habilidade;
-            this.quantidadeHabilidades++;
+        if (this.habilidade1 == null) {
+            this.habilidade1 = habilidade;
+            IO.println(" " + Nome + " aprendeu: " + habilidade.getNomeAb() + "!");
+        } else if (this.habilidade2 == null) {
+            this.habilidade2 = habilidade;
+            IO.println(" " + Nome + " aprendeu: " + habilidade.getNomeAb() + "!");
+        } else if (this.habilidadeNova == null) {
+            this.habilidadeNova = habilidade;
             IO.println(" " + Nome + " aprendeu: " + habilidade.getNomeAb() + "!");
         } else {
             IO.println(" " + Nome + " não pode aprender mais habilidades!");
         }
     }
 
-    public Habilidade[] getHabilidades() {
-        return habilidades;
+    public Habilidade getHabilidade1() {
+        return habilidade1;
     }
-
-    public int getQuantidadeHabilidades() {
-        return quantidadeHabilidades;
+    public Habilidade getHabilidade2() {
+        return habilidade2;
+    }
+    public Habilidade getHabilidadeNova() {
+        return habilidadeNova;
     }
 
     public String getNome() {

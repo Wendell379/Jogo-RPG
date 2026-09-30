@@ -23,7 +23,6 @@ public class Magia extends Habilidade {
             }
             }
             public int getCustoMana() {
-              return getCustoMana();
+            return this.CustoMana;
+         }
             }
-
-        }

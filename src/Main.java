@@ -28,7 +28,7 @@ void main() {
         jogador.aprenderHabilidade(new TecnicaEspada("Golpe Pesado ", RankPoder.INICIANTE, EstiloEspada.DEUS_DA_AGUA, 10, 15));
     }
 
-    Personagen guerreiro = new Personagen("Lucas", 90, 1, 80);
+    Personagen guerreiro = new Personagen("Lucas ", 90, 1, 80);
     guerreiro.aprenderHabilidade(new TecnicaEspada("Golpe Pesado ", RankPoder.INICIANTE, EstiloEspada.DEUS_DO_NORTE, 10, 20));
     IO.println("BATALHA: " + jogador.getNome() + " vs " + guerreiro.getNome() + " ");
 
@@ -39,17 +39,25 @@ void main() {
         IO.println(guerreiro.getNome() + " | HP: " + guerreiro.getVidaAtual());
 
         IO.println("Escolha qual habilidade usar: ");
-        for (int i = 0; i < jogador.getQuantidadeHabilidades(); i++) {
-            Habilidade h = jogador.getHabilidades()[i];
-            IO.println("[" + (i + 1) + "] " + h.getNomeAb() + " (" + h.getRank() + ")");
+        if (jogador.getHabilidade1() != null) {
+            IO.println("[1] " + jogador.getHabilidade1().getNomeAb() + " (" + jogador.getHabilidade1().getRank() + ")");
+        }
+        if (jogador.getHabilidade2() != null) {
+            IO.println("[2] " + jogador.getHabilidade2().getNomeAb() + " (" + jogador.getHabilidade2().getRank() + ")");
+        }
+        if (jogador.getHabilidadeNova() != null) {
+            IO.println("[3] " + jogador.getHabilidadeNova().getNomeAb() + " (" + jogador.getHabilidadeNova().getRank() + ")");
         }
 
         IO.println("Sua opção: ");
-        int escolha = scanner.nextInt() - 1;
+        int escolha = scanner.nextInt();
 
-
-        if (escolha >= 0 && escolha < jogador.getQuantidadeHabilidades()) {
-            jogador.getHabilidades()[escolha].fazer(jogador, guerreiro);
+        if (escolha == 1 && jogador.getHabilidade1() != null) {
+            jogador.getHabilidade1().fazer(jogador, guerreiro);
+        } else if (escolha == 2 && jogador.getHabilidade2() != null) {
+            jogador.getHabilidade2().fazer(jogador, guerreiro);
+        } else if (escolha == 3 && jogador.getHabilidadeNova() != null) {
+            jogador.getHabilidadeNova().fazer(jogador, guerreiro);
         } else {
             IO.println("Opção inválida! Você perdeu a vez.");
         }
@@ -57,7 +65,9 @@ void main() {
 
         if (guerreiro.getVidaAtual() > 0) {
             IO.println("Turno do Rival:");
-            guerreiro.getHabilidades()[0].fazer(guerreiro, jogador);
+            if (guerreiro.getHabilidade1() != null) {
+                guerreiro.getHabilidade1().fazer(guerreiro, jogador);
+            }
         }
 
         Turno++;
