@@ -19,17 +19,17 @@ void main() {
     if (opcaoClasse == 1) {
 
         jogador = new Personagen(nomeJogador, 60, 120, 30);
-        jogador.aprenderHabilidade(new Magia("Bola de Fogo", RankPoder.INICIANTE, ElementosMagicos.Fogo, 25, 15));
-        jogador.aprenderHabilidade(new Magia("Rajada de Água", RankPoder.INICIANTE, ElementosMagicos.Agua, 20, 10));
+        jogador.aprenderHabilidade(new Magia("Bola de Fogo ", RankPoder.INICIANTE, ElementosMagicos.Fogo, 25, 15));
+        jogador.aprenderHabilidade(new Magia("Rajada de Água ", RankPoder.INICIANTE, ElementosMagicos.Agua, 20, 10));
     } else {
 
         jogador = new Personagen(nomeJogador, 80, 0, 80);
-        jogador.aprenderHabilidade(new TecnicaEspada("Corte Rapido", RankPoder.INICIANTE, EstiloEspada.DEUS_DA_ESPADA, 15, 20));
-        jogador.aprenderHabilidade(new TecnicaEspada("Golpe Pesado", RankPoder.INICIANTE, EstiloEspada.DEUS_DA_AGUA, 10, 15));
+        jogador.aprenderHabilidade(new TecnicaEspada("Corte Rapido ", RankPoder.INICIANTE, EstiloEspada.DEUS_DA_ESPADA, 15, 20));
+        jogador.aprenderHabilidade(new TecnicaEspada("Golpe Pesado ", RankPoder.INICIANTE, EstiloEspada.DEUS_DA_AGUA, 10, 15));
     }
 
-    Personagen guerreiro = new Personagen("Lucas", 90, 0, 80);
-    guerreiro.aprenderHabilidade(new TecnicaEspada("Golpe Pesado", RankPoder.INICIANTE, EstiloEspada.DEUS_DO_NORTE, 10, 20));
+    Personagen guerreiro = new Personagen("Lucas", 90, 1, 80);
+    guerreiro.aprenderHabilidade(new TecnicaEspada("Golpe Pesado ", RankPoder.INICIANTE, EstiloEspada.DEUS_DO_NORTE, 10, 20));
     IO.println("BATALHA: " + jogador.getNome() + " vs " + guerreiro.getNome() + " ");
 
     int Turno = 1;
@@ -38,7 +38,7 @@ void main() {
         IO.println(jogador.getNome() + " | HP: " + jogador.getVidaAtual() + " | MP: " + jogador.getManaAtual() + " | SP: " + jogador.getStaminaAtual());
         IO.println(guerreiro.getNome() + " | HP: " + guerreiro.getVidaAtual());
 
-        IO.println("Escolha qual habilidade usar:");
+        IO.println("Escolha qual habilidade usar: ");
         for (int i = 0; i < jogador.getQuantidadeHabilidades(); i++) {
             Habilidade h = jogador.getHabilidades()[i];
             IO.println("[" + (i + 1) + "] " + h.getNomeAb() + " (" + h.getRank() + ")");
@@ -72,11 +72,11 @@ void main() {
         if (opcaoClasse == 1) {
             jogador.setRankMagicoglobal(RankPoder.INTERMEDIARIO);
             IO.println("Progresso: " + jogador.getNome() + " evoluiu para o Rank Mágico: " + jogador.getRankMagicoglobal() + "!");
-            jogador.aprenderHabilidade(new Magia("Explosão de Fogo", RankPoder.INTERMEDIARIO, ElementosMagicos.Fogo, 45, 30));
+            jogador.aprenderHabilidade(new Magia("Explosão de Fogo ", RankPoder.INTERMEDIARIO, ElementosMagicos.Fogo, 45, 30));
         } else {
             jogador.setRankEspadachin(RankPoder.INTERMEDIARIO);
             IO.println("Progresso: " + jogador.getNome() + " evoluiu para o Rank Espadachim: " + jogador.getRankEspadachin() + "!");
-            jogador.aprenderHabilidade(new TecnicaEspada("Dança das Lâminas", RankPoder.INTERMEDIARIO, EstiloEspada.DEUS_DA_ESPADA, 25, 40));
+            jogador.aprenderHabilidade(new TecnicaEspada("Dança das Lâminas ", RankPoder.INTERMEDIARIO, EstiloEspada.DEUS_DA_ESPADA, 25, 40));
         }
     } else {
         IO.println("Derrota! O rival resistiu aos seus ataques.");
