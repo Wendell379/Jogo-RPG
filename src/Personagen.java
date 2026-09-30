@@ -48,10 +48,18 @@ public class Personagen {
         return quantidadeHabilidades;
     }
 
-    public String getNome() { return Nome; }
-    public int getVidaAtual() { return VidaAtual; }
-    public int getManaAtual() { return ManaAtual; }
-    public int getStaminaAtual() { return StaminaAtual; }
+    public String getNome() {
+        return Nome;
+    }
+    public int getVidaAtual() {
+        return VidaAtual;
+    }
+    public int getManaAtual() {
+        return ManaAtual;
+    }
+    public int getStaminaAtual() {
+        return StaminaAtual;
+    }
 
     public void setVidaAtual(int vidaAtual) {
         if (vidaAtual < 0) {

@@ -10,7 +10,7 @@ void main() {
 
     IO.println("Escolha sua Classe:");
     IO.println("1 Mago");
-    IO.println("2 Guerreiro");
+    IO.println("2 Espadachim");
     IO.println("Sua opção: ");
     int opcaoClasse = scanner.nextInt();
 
